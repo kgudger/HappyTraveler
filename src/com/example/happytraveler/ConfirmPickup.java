@@ -17,7 +17,7 @@ public class ConfirmPickup extends Activity{
 	//I have hardcoded them for now.  -Andrew
 	String name = "Leta Block";
 	float rating = (float)3.0;
-	String location = "111 One Lane";
+	String location = "721 Pearl St";
 	TextView displayName, displayLocation;
 	RatingBar displayRating;
 	
