@@ -40,18 +40,26 @@ public class IHaveARide extends Activity {
 		Log.w("myApp", Integer.toString((Integer)locationStr.length()));
 		Log.w("myApp", Integer.toString((Integer)zipStr.length()));
 		Log.w("myApp", Integer.toString((Integer)stateStr.length()));
+		Log.w("myApp", "Before if");
 		if (locationStr.length() == 0 || zipStr.length() == 0 || stateStr.length() == 0) {
 			Toast.makeText(this, "Fields empty", 1).show();
 			return;
 		}
+		Log.w("myApp", "After if");
 		
 		locationStr = locationStr + " " + stateStr + " " + zipStr;
 		
 		List<Address> foundGeocode = null;
 		// find the addresses  by using getFromLocationName() method with the given address
+		Log.w("myApp", "Before Geo");
 		foundGeocode = new Geocoder(this).getFromLocationName(locationStr, 1);
-		 destinationLat = foundGeocode.get(0).getLatitude(); //getting latitude
-		 destinationLong = foundGeocode.get(0).getLongitude();//getting longitude
+		if (foundGeocode.size() == 0) {
+			Toast.makeText(this, "Address not found", 1).show();
+			return;
+		}
+		destinationLat = foundGeocode.get(0).getLatitude(); //getting latitude
+		destinationLong = foundGeocode.get(0).getLongitude();//getting longitude
+		Log.w("myApp", "After Geo");
 		 
 /****************************************************************************************************
 		 // move destinationLat and destinationLong to server
