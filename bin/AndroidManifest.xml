@@ -4,18 +4,11 @@
     android:versionCode="1"
     android:versionName="1.0" >
     
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
-    <!-- The following two permissions are not required to use
-         Google Maps Android API v2, but are recommended. -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true"/>
-
+	
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="8" />
@@ -25,6 +18,9 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        <meta-data
+           android:name="com.google.android.gms.version"
+           android:value="3265130" />
         <activity
             android:name="com.example.happytraveler.HappyTraveler"
             android:label="@string/app_name" >
@@ -50,9 +46,21 @@
             android:name="IHaveARide"
             android:label="I have a ride" >
         </activity>
-        <meta-data
-            android:name="com.google.android.maps.v2.AIzaSyC3nU8EATt2Zk1ryQEMd5fSV0kt6c0ZBx4"
-            android:value="AIzaSyC3nU8EATt2Zk1ryQEMd5fSV0kt6c0ZBx4" />
+                <activity
+            android:name="RiderSelection"
+            android:label="Choose Riders" >
+        </activity>
+    	<meta-data
+    	    android:name="com.google.android.maps.v2.API_KEY"
+   			android:value="AIzaSyB7jLw-RHjbgrTEdUUFKCh7Gu9wQtjv-I0"/>
     </application>
-
+	<uses-permission android:name="android.permission.INTERNET"/>
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+	<uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+	<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+	<uses-feature
+	       android:glEsVersion="0x00020000"
+	       android:required="true"/>
 </manifest>
