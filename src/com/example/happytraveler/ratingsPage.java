@@ -1,13 +1,19 @@
+/**
+ * 
+ * 
+ * 
+ * ATTENTION: in your doInbackground method you have hardcoded 2 
+ * temp values for variables which need to be given proper values
+ * FIX THIS
+ * 
+ * 
+ * 
+ */
+
 package com.example.happytraveler;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLEncoder;
-
 import android.app.Activity;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.widget.Button;
@@ -16,7 +22,9 @@ import android.view.View.OnClickListener;
 import android.widget.RatingBar;
 import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.content.Context;
+import android.content.Intent;
+
 /**
  * class accepts input from user, indicating rating of driver/passenger
  * input is formated as a selection of 5 stars
@@ -41,6 +49,7 @@ public class ratingsPage extends Activity{
 	private Button send;
 	private RatingBar stars;
 	private TextView displayRating;
+	private ServerInterface server;
 	
 	public int getRatedName() {
 		return ratedName;
@@ -92,6 +101,7 @@ public class ratingsPage extends Activity{
 	 */
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		server= new ServerInterface(this);
 		setContentView(R.layout.ratings_page_star1);
 		addListenerOnRatingBar();
 		addListenerOnButton();
@@ -108,60 +118,51 @@ public class ratingsPage extends Activity{
 	}
 	
 	public void addListenerOnButton() {
+		final Context context = this;
 		stars = (RatingBar) findViewById(R.id.stars);
 		send = (Button) findViewById(R.id.send);
 		send.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
+				//final Context context = this;
 				//float rating=stars.getRating();	
 				//GetConfirm confirm=new GetConfirm(stars.getRating(),getRatedName(),getDriverStatus());
 				//GetConfirm confirm=new GetConfirm();
 				//String response=confirm.doInBackground();
 				(new GetConfirm()).execute((Object)null);
+				if(getDriverStatus()){//if the person being rated is a driver
+					//then this person is a passenger and should just be spit back out at the homepage
+					Intent intent = new Intent(context, HappyTraveler.class);
+					startActivity(intent);
+				}
+				else{
+					Intent intent = new Intent(context, HappyTraveler.class);
+					startActivity(intent);
+					/*
+					Intent intent = new Intent(context, );
+					startActivity(intent);
+					*/
+					/*String data = "http://sluglug.soe.ucsc.edu/~keith/HT/DocAuto.png";
+
+	                Uri uri = Uri.parse(data);
+					Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+			        startActivity(intent);*/
+				}
 				//System.out.printf("%s %s %s %d\n","Data submited!!",getRatedName(),"was rated",stars.getRating());
 		 	}
 		});
 	}
 	
 	private class GetConfirm extends AsyncTask<Object,Object,Object>{
-		//private float r=0;
-		//private int u=0;
-		//private boolean d=null;
-		
-		/**
-		 * the actual constructor, passes the values of user_id and rating from
-		 * the ratingsPage class to GetConfirm
-		 * @param rating
-		 * @param user_id
-		 */
-		/**public GetConfirm(float rating,int user_id,boolean driverStatus){
-			r=rating;
-			u=user_id;
-			d=driverStatus;
-		}
-		*/
-		/**
-		 * sends user_id and rating information to web-server for storage
-		 * will print an error message if the values weren't initialized
-		 */
 		protected String doInBackground(Object... args) { 
 			setDriverStatus(true);
 			setRatedName(1);
-			/**if(r==0||u==0){
-				System.err.printf("%s\n","user_id and rating were not passed to GetConfirm");
-			    return "no";
-			}*/
-			/**else{
-				if(d)
-					return ServerInterface.setDriverRating(""+u,""+r,getString(R.string.server_url));
-				else
-					return ServerInterface.setRiderRating(""+u,""+r,getString(R.string.server_url));
-			}*/
+			//ServerInterface server= new ServerInterface(this);
 			if(getDriverStatus())
-				return ServerInterface.setDriverRating(getRatedName(),stars.getRating(),getString(R.string.server_url));
+				return server.setDriverRating(getRatedName(),stars.getRating(),R.string.server_url);
 			else
-				return ServerInterface.setRiderRating(getRatedName(),stars.getRating(),getString(R.string.server_url));
+				return server.setRiderRating(getRatedName(),stars.getRating(),R.string.server_url);
 		}
-		
+		/**
 		protected void onPostExectute(Object objResult){
 			if(objResult != null && objResult instanceof String) {                          
                 String result = (String) objResult;
@@ -170,52 +171,6 @@ public class ratingsPage extends Activity{
 			else
 				Toast.makeText(getApplicationContext(), "Didn't get any result from server", Toast.LENGTH_SHORT).show();
 		}
+		*/
 	}
-}
-
-class ServerInterface{
-	 public static String SERVER_URL ;
-
-	 public static String setDriverRating(int user, float rating, String server_url) {
-	     SERVER_URL = server_url ;
-	     String data = "command=" + URLEncoder.encode("setDriverRating");
-	     data += "&user_id=" + user;
-	     data += "&rating=" + rating;
-	     return executeHttpRequest(data);
-	 }
-	 
-	 public static String setRiderRating(int user, float rating, String server_url) {
-	     SERVER_URL = server_url ;
-	     String data = "command=" + URLEncoder.encode("setRiderRating");
-	     data += "&user_id=" + user;
-	     data += "&rating=" + rating;
-	     return executeHttpRequest(data);
-	 }
-	 
-	 private static String executeHttpRequest(String data) {
-		 String result = "";
-	     try {
-	    	 URL url = new URL(SERVER_URL);
-	         URLConnection connection = url.openConnection();
-	         connection.setDoInput(true);
-	         connection.setDoOutput(true);
-	         connection.setUseCaches(false);
-	         connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-	         DataOutputStream dataOut = new DataOutputStream(connection.getOutputStream());
-	         dataOut.writeBytes(data);
-	         dataOut.flush();
-	         dataOut.close();
-	         DataInputStream dataIn = new DataInputStream(connection.getInputStream()); 
-	         String inputLine;
-	         while ((inputLine = dataIn.readLine()) != null) {
-	        	 result += inputLine;
-	         }
-	         dataIn.close();
-	     } catch (IOException e) {
-	         e.printStackTrace();
-	         result = null;
-	     }
-
-	     return result;
-	 }
 }

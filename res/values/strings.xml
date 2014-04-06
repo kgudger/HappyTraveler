@@ -84,5 +84,13 @@
 	<string name="selectARider">Select a Rider:</string>
 	<string name="city">City</string>
 	<string name="getrider">Get a Rider!</string>
-
+	<string name="pleaseWaitRequest">Please wait for a driver to respond to your request...</string>
+	<string name="cancelRequest">Cancel Request</string>
+	<string name="enjoyRide">Enjoy your ride!  Hit the button below when you are finished.</string>
+	<string name="continueRatings">Continue to Ratings</string>
+	<string name="selectARider">Select A Rider:</string>
+	<string name="confirm">Confirm</string>
+	<string name="unknownName">NAME UNKNOWN</string>
+	<string name="confirmPickup">Do you wish to pick this driver up?</string>
+	<string name="locationUnknown">LOCATION UNKNOWN</string>
 </resources>

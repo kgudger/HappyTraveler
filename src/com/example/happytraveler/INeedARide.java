@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Criteria;
 import android.location.Geocoder;
@@ -61,10 +62,9 @@ public class INeedARide extends Activity {
 
 		    //Get current location
 		 Location myLocation = locationManager.getLastKnownLocation(provider);
-		// if( myLocation != null){
 			 currentLat = myLocation.getLatitude();
 			 currentLong = myLocation.getLongitude();
-	//	 }
+			 
 //*/		 
 		 
 /****************************************************************************************************
@@ -72,6 +72,9 @@ public class INeedARide extends Activity {
 		  
 ****************************************************************************************************/ 
 	}
-	
+	public void buttonPress(View view) {
+		Intent intent = new Intent(this, RiderWait.class);
+		startActivity(intent);
+	}
 	
 }

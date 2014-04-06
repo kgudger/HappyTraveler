@@ -78,7 +78,8 @@
             android:layout_alignLeft="@+id/editText2"
             android:layout_below="@+id/editText2"
             android:layout_marginTop="28dp"
-            android:text="@string/needRideButton" />
+            android:text="@string/needRideButton"
+            android:onClick="buttonPress" />
 
     </RelativeLayout>
 

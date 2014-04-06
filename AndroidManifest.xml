@@ -43,12 +43,36 @@
             android:label="I need a ride" >
         </activity>
         <activity
+            android:name="ConfirmPickup"
+            android:label="Confirm Pickup" >
+        </activity>
+        <activity
             android:name="IHaveARide"
             android:label="I have a ride" >
         </activity>
                 <activity
             android:name="RiderSelection"
             android:label="Choose Riders" >
+        </activity>
+		<activity
+            android:name="profile"
+            android:label="Profile page" >
+        </activity>
+        <activity
+            android:name="OngoingRide"
+            android:label="Displayed during ride" >
+        </activity>
+        <activity
+            android:name="PotentialRide"
+            android:label="List of potential rides" >
+        </activity>
+        <activity
+            android:name="ratingsPage"
+            android:label="Rate your Driver/Rider" >
+        </activity>
+        <activity
+            android:name="RiderWait"
+            android:label="Waiting for a driver" >
         </activity>
     	<meta-data
     	    android:name="com.google.android.maps.v2.API_KEY"
