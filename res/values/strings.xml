@@ -81,5 +81,6 @@
 	<string name="enterAddressText">"Destination Address: "</string>
 	<string name="statePrompt">State</string>
 	<string name="zipHint">zip code</string>
+	<string name="selectARider">Select a Rider:</string>
 
 </resources>
