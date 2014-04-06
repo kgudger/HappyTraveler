@@ -32,6 +32,8 @@ public class IHaveARide extends Activity {
 	
 	public void submitClick(View v) throws IOException{
 //		Location = myLocation = mMap.getLocation();
+		
+		/*
 		double destinationLat, destinationLong; //, currentLat, currentLong;
 		//timeText = (EditText)findViewById(R.id.editText2);
 		
@@ -50,8 +52,8 @@ public class IHaveARide extends Activity {
 		 
 //		 currentLat = location.getLatitude();
 		 
-	 
-		 Intent intent = new Intent( this, HappyTraveler.class);
+	 	 */
+		 Intent intent = new Intent( this, RiderSelection.class);
 		 startActivity(intent);
 	}
 	
