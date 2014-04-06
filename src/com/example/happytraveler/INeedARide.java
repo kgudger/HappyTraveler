@@ -10,6 +10,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -32,7 +33,7 @@ public class INeedARide extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ride_needed_alt_alt);
-		googleMap.setMyLocationEnabled(true);
+//		googleMap.setMyLocationEnabled(true);
 	}
 	
 	public void sendRequest(View view) throws IOException {
@@ -48,6 +49,9 @@ public class INeedARide extends Activity {
 		List<Address> foundGeocode = null;
 		// find the addresses  by using getFromLocationName() method with the given address
 		foundGeocode = new Geocoder(this).getFromLocationName(locationStr, 1);
+		String geoStr = foundGeocode.toString();
+		Log.w("myApp", "Geocode: ");
+		Log.w("myApp", geoStr);
 		 destinationLat = foundGeocode.get(0).getLatitude(); //getting latitude
 		 destinationLong = foundGeocode.get(0).getLongitude();//getting longitude
 		 
@@ -57,11 +61,11 @@ public class INeedARide extends Activity {
 
 		    //Get current location
 		 Location myLocation = locationManager.getLastKnownLocation(provider);
-		 if( myLocation != null){
+		// if( myLocation != null){
 			 currentLat = myLocation.getLatitude();
 			 currentLong = myLocation.getLongitude();
-		 }
-		 
+	//	 }
+//*/		 
 		 
 /****************************************************************************************************
 		 // move destinationLat, destinationLong, currentLat, and currentLong to server

@@ -2,14 +2,16 @@ package com.example.happytraveler;
 
 import java.io.IOException;
 import java.util.List;
+
+import android.app.Activity;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
-import android.app.Activity;
-import android.content.Intent;
-import android.view.Menu;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 /**
  *
@@ -35,6 +37,13 @@ public class IHaveARide extends Activity {
 		String zipStr = zipText.getText().toString();
 		EditText stateText = (EditText)findViewById(R.id.editText2);
 		String stateStr = stateText.getText().toString();
+		Log.w("myApp", Integer.toString((Integer)locationStr.length()));
+		Log.w("myApp", Integer.toString((Integer)zipStr.length()));
+		Log.w("myApp", Integer.toString((Integer)stateStr.length()));
+		if (locationStr.length() == 0 || zipStr.length() == 0 || stateStr.length() == 0) {
+			Toast.makeText(this, "Fields empty", 1).show();
+			return;
+		}
 		
 		locationStr = locationStr + " " + stateStr + " " + zipStr;
 		
