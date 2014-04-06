@@ -21,4 +21,15 @@
         android:layout_marginTop="33dp"
         android:text="@string/cancelRequest" />
 
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/cancel_button"
+        android:layout_marginRight="56dp"
+        android:layout_marginTop="47dp"
+        android:text="I Got Picked Up"
+        android:onClick="onPress" />
+
 </RelativeLayout>

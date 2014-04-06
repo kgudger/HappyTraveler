@@ -1,12 +1,12 @@
 package com.example.happytraveler;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.content.Context;
 
 /**
  * The waiting page the user sees after submitted a ride request.  Contains the option to cancel the 
@@ -40,5 +40,10 @@ public class RiderWait extends Activity{
 				startActivity(intent);
 			}
 		});
+
+	}
+	public void onPress(View view) {
+		 Intent intent = new Intent( this, OngoingRide.class);
+		 startActivity(intent);
 	}
 }
