@@ -17,32 +17,26 @@ import android.widget.EditText;
  *
  */
 public class IHaveARide extends Activity {
-	EditText timeText;
-	int time;
-	
+		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_ihave_aride);
-		time = 0;
-//		mMap.setMyLocationEnabled(true);
 	}
 
 
 	
 	public void submitClick(View v) throws IOException{
-//		Location = myLocation = mMap.getLocation();
-		
-		/*
-		double destinationLat, destinationLong; //, currentLat, currentLong;
-		//timeText = (EditText)findViewById(R.id.editText2);
+		double destinationLat, destinationLong;
 		
 		EditText locationText = (EditText)findViewById(R.id.editText1);
 		String locationStr = locationText.getText().toString();
 		EditText zipText = (EditText)findViewById(R.id.editText3);
 		String zipStr = zipText.getText().toString();
+		EditText stateText = (EditText)findViewById(R.id.editText2);
+		String stateStr = stateText.getText().toString();
 		
-		locationStr = locationStr + " " + zipStr;
+		locationStr = locationStr + " " + stateStr + " " + zipStr;
 		
 		List<Address> foundGeocode = null;
 		// find the addresses  by using getFromLocationName() method with the given address
@@ -50,9 +44,10 @@ public class IHaveARide extends Activity {
 		 destinationLat = foundGeocode.get(0).getLatitude(); //getting latitude
 		 destinationLong = foundGeocode.get(0).getLongitude();//getting longitude
 		 
-//		 currentLat = location.getLatitude();
-		 
-	 	 */
+/****************************************************************************************************
+		 // move destinationLat and destinationLong to server
+		  
+****************************************************************************************************/ 
 		 Intent intent = new Intent( this, RiderSelection.class);
 		 startActivity(intent);
 	}

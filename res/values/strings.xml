@@ -82,5 +82,7 @@
 	<string name="statePrompt">State</string>
 	<string name="zipHint">zip code</string>
 	<string name="selectARider">Select a Rider:</string>
+	<string name="city">City</string>
+	<string name="getrider">Get a Rider!</string>
 
 </resources>
