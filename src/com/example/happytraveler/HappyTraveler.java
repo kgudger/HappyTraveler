@@ -1,17 +1,51 @@
 package com.example.happytraveler;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.app.Activity;
 import android.view.Menu;
+import android.widget.Button;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.content.Context;
+import android.content.Intent;
 
 public class HappyTraveler extends Activity {
 	
+	Button driver, rider; //the two buttons
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.ride_needed_alt_alt);
+        setContentView(R.layout.activity_happy_traveler);
+        addListenersOnButtons(); //Sets buttons to respond to clicks
+	}
+
+	public void addListenersOnButtons(){
+		
+		final Context context = this;
+		
+		driver = (Button) findViewById(R.id.driver_button);
+		rider = (Button) findViewById(R.id.rider_button);
+		
+		driver.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View view){
+				
+				Intent intent = new Intent(context, IHaveARide.class);
+				startActivity(intent);
+			}
+		});
+		
+		rider.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View view){
+				
+				Intent intent = new Intent(context, INeedARide.class);
+				startActivity(intent);
+			}
+		});
 	}
 
 	@Override
@@ -20,9 +54,5 @@ public class HappyTraveler extends Activity {
 		getMenuInflater().inflate(R.menu.happy_traveler, menu);
 		return true;
 	}
-	
-	public void buttonPress(View view) {
-		Intent clickedButton = new Intent(this, INeedARide.class);
-		startActivity(clickedButton);
-	}
+
 }

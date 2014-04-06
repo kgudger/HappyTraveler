@@ -19,7 +19,7 @@ public class INeedARide extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.ride_needed);
+		setContentView(R.layout.ride_needed_alt_alt);
 	}
 	
 	public void sendRequest(View view) {
